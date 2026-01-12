@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import FruitCard from "../components/FruitCard";
 
+const base = import.meta.env.BASE_URL;
+
 const apples = [
   {
     id: 1,
     name: "Red Delicious",
     price: 3,
-    image: "/images/apple1.jpg",
+    image: base + "images/apple1.jpg",
     description:
       "Red Delicious apples are sweet, juicy, and perfect for snacking or adding to salads.",
   },
@@ -14,7 +16,7 @@ const apples = [
     id: 2,
     name: "Fuji",
     price: 4,
-    image: "/images/apple2.jpg",
+    image: base + "images/apple2.jpg",
     description:
       "Fuji apples are crisp, sweet, and ideal for fresh eating, baking, or making apple juice.",
   },
@@ -22,7 +24,7 @@ const apples = [
     id: 3,
     name: "Honeycrisp",
     price: 4.5,
-    image: "/images/apple3.jpg",
+    image: base + "images/apple3.jpg",
     description:
       "Honeycrisp apples are very crisp and juicy, known for their balanced sweetness and tartness.",
   },
@@ -30,7 +32,7 @@ const apples = [
     id: 4,
     name: "Granny Smith",
     price: 3.8,
-    image: "/images/apple4.jpg",
+    image: base + "images/apple4.jpg",
     description:
       "Granny Smith apples are tart and crisp, perfect for baking, cooking, and salads.",
   },
@@ -38,7 +40,7 @@ const apples = [
     id: 5,
     name: "Golden Delicious",
     price: 3.5,
-    image: "/images/apple5.jpg",
+    image: base + "images/apple5.jpg",
     description:
       "Golden Delicious apples are sweet with a mellow flavor, great for snacking and cooking.",
   },
@@ -46,7 +48,7 @@ const apples = [
     id: 6,
     name: "Gala",
     price: 4,
-    image: "/images/gala.jpg",
+    image: base + "images/gala.jpg",
     description:
       "Gala apples are mild and sweet with a thin skin, perfect for eating fresh or adding to desserts.",
   },
@@ -54,6 +56,7 @@ const apples = [
 
 export default function Apple() {
   const [search, setSearch] = useState("");
+
   const filteredApples = apples.filter((fruit) =>
     fruit.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -70,9 +73,13 @@ export default function Apple() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {filteredApples.length > 0 ? (
-          filteredApples.map((fruit) => <FruitCard key={fruit.id} fruit={fruit} />)
+          filteredApples.map((fruit) => (
+            <FruitCard key={fruit.id} fruit={fruit} />
+          ))
         ) : (
-          <p className="text-center text-gray-500 mt-4">No apple variety found.</p>
+          <p className="text-center text-gray-500 mt-4">
+            No apple variety found.
+          </p>
         )}
       </div>
     </div>
